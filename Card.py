@@ -31,11 +31,7 @@ class Card:
         return f"{Card.VALUES[self.value - 1]} {Card.SUITS[self.suit - 1]}"
 
 
-
-
-
-
-a = Card(10, 1)
-b = Card(9, 3)
-
-print(a < b)
+if __name__ == '__main__':
+    a = Card(10, 1)
+    b = Card(9, 3)
+    print(a < b)
