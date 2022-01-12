@@ -6,6 +6,7 @@ class EmptyDeckError(BaseException): #we always inherit exceptions from baseExce
     pass # we are lazy
 
 class DeckOfCards:
+    DECK_LENGHT = 52
     def __init__(self):
         self.cards = []
         for value in range(1, len(Card.VALUES) + 1):
