@@ -19,11 +19,11 @@ class CardGame:
 
     def print_winner(self, round=None):
         winner = self.get_winner()
-        if winner is not None:
-            if round is not None:
+        if winner is not None: #If have winner
+            if round is not None: # если задан раунд
                 print(f"Winner after {round + 1} round: {winner.name}")
             else:
-                print(f"Winner: {winner.name}")
+                print(f"Winner: {winner.name}")  #winner of the game
         else:
             print("Draw")
 
@@ -42,11 +42,11 @@ class CardGame:
 
     def new_game(self):
         if self.is_game_started:
-            print("Error")
+            print("Error: Game already started")
             return
         deck = DeckOfCards()
-        for player in self.players:
-            player.set_hand(deck)
+        for player in self.players: #cards for each player
+            player.set_hand(deck) # can be mocked
         self.is_game_started = True
 
     def get_winner(self):
@@ -55,7 +55,7 @@ class CardGame:
         # Идея в том чтобы удалить нулевой элемент из списка и ходить по списку начиная с первого, т
         # т.к нулевой уже хранится в перенной winner
         for player in self.players[1:]:
-            if len(winner.hand) < len(player.hand):
+            if len(winner.hand) < len(player.hand): # Это нельзя замокать: потому что хенд - внутреннее свойство класса
                 winner = player
                 has_winner = True
             elif len(winner.hand) == len(player.hand):
@@ -73,6 +73,7 @@ class CardGame:
             index = random.randint(0, len(player.hand) - 1)  # takes a random card from the player
             card = player.hand[index]  # card = random.choice(player.hand)
             del player.hand[index]  # player.hand.remove(card)
+            player.removeCard(index)
             round_cards.append(card)
         return round_cards
 
