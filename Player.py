@@ -3,7 +3,14 @@ from Deck import DeckOfCards
 
 class Player:
     def __init__(self, name, number_of_cards=26):
+        if type(name) != str:
+            raise TypeError("The name should be a string, honey!")
+        if type(number_of_cards) != int:
+            raise TypeError("The number of cards should be an int")
+        if number_of_cards <= 0:
+            raise ValueError("Number of cards shoud be positive")
         self.name = name
+
         self.number_of_cards = number_of_cards
         self.hand: [Card] = []
 
@@ -18,3 +25,5 @@ class Player:
 
 
 
+if __name__ == "__main__":
+    misha = Player("Misha", -1)
